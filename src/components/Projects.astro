@@ -1,0 +1,52 @@
+---
+import Csharp from "./icons/Csharp.astro";
+import Bootstrap from "./icons/Bootstrap.astro";
+
+const TAGS = {
+  CSHARP: {
+    name: "C#",
+    class: "bg-black text-white",
+    icon: Csharp,
+  },
+  BOOTSTRAP: {
+    name: "Bootstrap",
+    class: "bg-[#003159] text-white",
+    icon: Bootstrap,
+  },
+};
+const PROJECTS = [
+  {
+    title: "Indicadores - ENACOM",
+    description:
+      "Indicadores de mercado de los distintos servicios regulados por ENACOM.",
+    link: "https://indicadores.enacom.gob.ar/",
+    github: "#",
+    image: "/projects/indicadores.webp",
+    tags: [TAGS.CSHARP, TAGS.BOOTSTRAP],
+  },
+];
+---
+
+{
+  PROJECTS.map(({ title, description, tags, image }) => (
+    <article>
+      <h3 class="text-2xl font-semibold text-yellow-200 mb-2">{title}</h3>
+      <p class="text-lg mb-4 text-pretty">{description}</p>
+      <ul class="flex gap-x-4 flex-row mb-2">
+        {tags.map((tag) => (
+          <li>
+            <span class={`flex gap-x-2 rounded-full text-sm ${tag.class} py-2 px-4`}>
+              <tag.icon class="size-7" />
+              {tag.name}
+            </span>
+          </li>
+        ))}
+      </ul>
+      <img
+        class="rounded shadow-2xl shadow-white/10"
+        src={image}
+        alt={`Captura de pantalla del proyecto ${image}`}
+      />
+    </article>
+  ))
+}

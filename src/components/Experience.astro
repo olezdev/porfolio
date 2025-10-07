@@ -1,0 +1,29 @@
+---
+import ExperienceItem from "./ExperienceItem.astro";
+
+const EXPERIENCE = [
+  {
+    date: "Actualmente...",
+    title: "Desarrollador Web - Programador",
+    description:
+      "Desarrollo y mantenimiento del sitio web indicadores.enacom.gob.ar, especializándome en el backend con .Net. También trabajo con bases de datos SQL y NoSQL, y tengo experiencia en frontend con React.",
+    link: "https://indicadores.enacom.gob.ar/",
+  },
+  {
+    date: "Octubre 2013",
+    title: "Soporte Técnico - BNA",
+    description:
+      "Brindé soporte técnico a usuarios, resolviendo incidencias y problemas relacionados con la infraestructura tecnológica, Servidores, conectividad, ATM del Banco Nación.",
+  },
+];
+---
+
+<ol class="relative border-s border-gray-200 ml-3">
+  {
+    EXPERIENCE.map((experience) => (
+      <li class="mb-10 ms-4">
+        <ExperienceItem {...experience} />
+      </li>
+    ))
+  }
+</ol>
