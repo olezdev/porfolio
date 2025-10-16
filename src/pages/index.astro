@@ -1,16 +1,18 @@
 ---
-import "../styles/global.css";
-import Layout from "../layouts/Layout.astro";
+// import "@/styles/global.css";
+import AboutMe from "@/components/AboutMe.astro";
 import Badge from "../components/Badge.astro";
 import BriefcaseIcon from "../components/icons/Briefcase.astro";
-import LinkedInIcon from "../components/icons/LinkedIn.astro";
-import GitHubIcon from "../components/icons/GitHub.astro";
-import MailIcon from "../components/icons/Mail.astro";
 import CodeIcon from "../components/icons/Code.astro";
-import SocialPill from "../components/SocialPill.astro";
 import Experience from "../components/Experience.astro";
+import GitHubIcon from "../components/icons/GitHub.astro";
+import Layout from "../layouts/Layout.astro";
+import LinkedInIcon from "../components/icons/LinkedIn.astro";
+import MailIcon from "../components/icons/Mail.astro";
+import ProfileIcon from "../components/icons/Profile.astro";
 import Projects from "../components/Projects.astro";
 import SectionContainer from "../components/SectionContainer.astro";
+import SocialPill from "../components/SocialPill.astro";
 
 ---
 
@@ -30,7 +32,7 @@ import SectionContainer from "../components/SectionContainer.astro";
 					href="https://www.linkedin.com/in/leoliveradev"
 					target="_blank"
 					rel="noopener"
-					class="flex justify-center items-center"
+					class="flex justify-center items-center hover:scale-105 transition"
 				>
 					<Badge>Disponible para trabajar</Badge>
 				</a>
@@ -69,6 +71,14 @@ import SectionContainer from "../components/SectionContainer.astro";
 				Proyectos
 			</h2>
 			<Projects />
+		</SectionContainer>
+
+		<SectionContainer id="sobre-mi">
+			<h2 class="text-2xl font-semibold mb-6 flex gap-x-3 items-center">
+				<ProfileIcon class="size-6" />
+				Sobre mí
+			</h2>
+			<AboutMe />
 		</SectionContainer>
 	</main>
 </Layout>

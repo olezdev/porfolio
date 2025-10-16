@@ -1,17 +1,32 @@
 ---
-import Csharp from "./icons/Csharp.astro";
 import Bootstrap from "./icons/Bootstrap.astro";
+import Csharp from "./icons/Csharp.astro";
+import GitHub from "./icons/GitHub.astro";
+import Link from "./icons/Link.astro"
+import LinkButton from "./LinkButton.astro";
+import NextJs from "./icons/NextJs.astro";
+import Tailwind from "./icons/Tailwind.astro";
 
 const TAGS = {
   CSHARP: {
     name: "C#",
-    class: "bg-black text-white",
+    class: "bg-[#A437AA] text-white",
     icon: Csharp,
   },
   BOOTSTRAP: {
     name: "Bootstrap",
     class: "bg-[#003159] text-white",
     icon: Bootstrap,
+  },
+  NEXT: {
+    name: "Next.js",
+    class: " text-white",
+    icon: NextJs,
+  },
+  TAILWIND: {
+    name: "Tailwind CSS",
+    class: "bg-[#003159] text-white",
+    icon: Tailwind,
   },
 };
 const PROJECTS = [
@@ -20,33 +35,69 @@ const PROJECTS = [
     description:
       "Indicadores de mercado de los distintos servicios regulados por ENACOM.",
     link: "https://indicadores.enacom.gob.ar/",
-    github: "#",
+    github: "",
     image: "/porfolio/projects/indicadores.webp",
     tags: [TAGS.CSHARP, TAGS.BOOTSTRAP],
+  },
+  {
+    title: "AdoPet",
+    description:
+      "AdopPet es una aplicación web diseñada para facilitar la adopción de animales y ayudar a conectar personas que han perdido o encontrado mascotas.",
+    link: "https://adopet-maidana07-projects.vercel.app/",
+    github: "https://github.com/No-Country-simulation/s18-05-m-csharp-react",
+    image: "/porfolio/projects/adopet.webp",
+    tags: [TAGS.CSHARP, TAGS.NEXT, TAGS.TAILWIND],
   },
 ];
 ---
 
-{
-  PROJECTS.map(({ title, description, tags, image }) => (
-    <article>
-      <h3 class="text-2xl font-semibold text-yellow-200 mb-2">{title}</h3>
-      <p class="text-lg mb-4 text-pretty">{description}</p>
-      <ul class="flex gap-x-4 flex-row mb-2">
-        {tags.map((tag) => (
-          <li>
-            <span class={`flex gap-x-2 rounded-full text-sm ${tag.class} py-2 px-4`}>
-              <tag.icon class="size-7" />
-              {tag.name}
-            </span>
-          </li>
-        ))}
-      </ul>
-      <img
-        class="rounded shadow-2xl shadow-white/10"
-        src={image}
-        alt={`Captura de pantalla del proyecto ${image}`}
-      />
-    </article>
-  ))
-}
+<div class="flex flex-col gap-y-16">
+  {
+    PROJECTS.map(({ image, title, description, tags, link, github }) => (
+    <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
+  <div class="w-full md:w-1/2">
+    <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
+      <img alt="Recién llegado vs 5 años en Nueva Zelanda" class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" loading="lazy" src={image} />
+    </div>
+  </div>
+
+  <div class="w-full md:w-1/2 md:max-w-lg">
+    <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">
+      {title}
+    </h3>
+    <div class="flex flex-wrap mt-2">
+      <ul class="flex flex-row mb-2 gap-x-2">
+          {tags.map((tag) => (
+            <li>
+              <span
+                class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}
+              >
+                <tag.icon class="size-4" />
+                {tag.name}
+              </span>
+            </li>
+          ))}
+        </ul>
+
+      <div class="mt-2 text-gray-700 dark:text-gray-400">{description}</div>
+      <footer class="flex items-end justify-start mt-4 gap-x-4">
+          {github && (
+            <LinkButton href={github}>
+              <GitHub class="size-6" />
+              Code
+              
+            </LinkButton>
+          )}
+          {link && (
+            <LinkButton href={link}>
+              <Link class="size-4" />
+              Preview
+            </LinkButton>
+          )}
+        </footer>
+    </div>
+  </div>
+</article>
+    ))
+  }
+</div>
