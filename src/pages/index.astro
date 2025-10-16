@@ -13,7 +13,7 @@ import ProfileIcon from "../components/icons/Profile.astro";
 import Projects from "../components/Projects.astro";
 import SectionContainer from "../components/SectionContainer.astro";
 import SocialPill from "../components/SocialPill.astro";
-
+import Hero from "@/components/Hero.astro";
 ---
 
 <Layout
@@ -21,64 +21,36 @@ import SocialPill from "../components/SocialPill.astro";
 	description="Contrata a Leonardo para crear tu aplicación web."
 >
 	<main class="px-4">
-		<SectionContainer class="py-44 pb-32">
-			<img
-				class="rounded-full size-12"
-				src="https://avatars.githubusercontent.com/u/88550405?v=4"
-				alt="leo photo"
-			/>
-			<h1 class="text-3xl md:text-4xl lg:text-5xl font-bold flex flex-row gap-x-4 pb-6 lg:pb-10">
-				Hey, soy Leonardo <a
-					href="https://www.linkedin.com/in/leoliveradev"
-					target="_blank"
-					rel="noopener"
-					class="flex justify-center items-center hover:scale-105 transition"
-				>
-					<Badge>Disponible para trabajar</Badge>
-				</a>
-			</h1>
-			<h2 class="text-xl lg:text-2xl text-wrap max-w-[700px]">
-				Desarrollador Web. De Buenos Aires Argentina. Especilizado en Backend
-			</h2>
-
-			<nav class="flex gap-4 mt-8 flex-wrap">
-				<SocialPill href="https:/www.linkedin.com/in/leoliveradev/">
-					<LinkedInIcon class="size-4 md:size-6" />
-					LinkedIn
-				</SocialPill>
-				<SocialPill href="https:/www.github.com/olezdev/">
-					<GitHubIcon class="size-4 md:size-6" />
-					GitHub
-				</SocialPill>
-				<SocialPill href="mailto:leoliveradev@gmail.com">
-					<MailIcon class="size-4 md:size-6" />
-					leoliveradev@gmail.com
-				</SocialPill>
-			</nav>
+		<SectionContainer class="py-16 pb-36">
+      <Hero>
+      </slot>
+    </Hero>
 		</SectionContainer>
 
-		<SectionContainer id="experiencia">
-			<h2 class="text-2xl font-semibold mb-6 flex gap-x-3 items-center">
-				<BriefcaseIcon class="size-6" />
-				Experiencia Laboral
-			</h2>
-			<Experience />
-		</SectionContainer>
+		<div class="space-y-24">
+			<SectionContainer id="experiencia">
+				<h2 class="text-2xl font-semibold mb-6 flex gap-x-3 items-center">
+					<BriefcaseIcon class="size-6" />
+					Experiencia Laboral
+				</h2>
+				<Experience />
+			</SectionContainer>
 
-		<SectionContainer id="proyectos">
-			<h2 class="text-2xl font-semibold mb-6 flex gap-x-3 items-center">
-				<CodeIcon class="size-6" />
-				Proyectos
-			</h2>
-			<Projects />
-		</SectionContainer>
+			<SectionContainer id="proyectos">
+				<h2 class="text-2xl font-semibold mb-6 flex gap-x-3 items-center">
+					<CodeIcon class="size-6" />
+					Proyectos
+				</h2>
+				<Projects />
+			</SectionContainer>
 
-		<SectionContainer id="sobre-mi">
-			<h2 class="text-2xl font-semibold mb-6 flex gap-x-3 items-center">
-				<ProfileIcon class="size-6" />
-				Sobre mí
-			</h2>
-			<AboutMe />
-		</SectionContainer>
+			<SectionContainer id="sobre-mi">
+				<h2 class="text-2xl font-semibold mb-6 flex gap-x-3 items-center">
+					<ProfileIcon class="size-6" />
+					Sobre mí
+				</h2>
+				<AboutMe />
+			</SectionContainer>
+		</div>
 	</main>
 </Layout>
