@@ -2,9 +2,10 @@
 import Bootstrap from "./icons/Bootstrap.astro";
 import Csharp from "./icons/Csharp.astro";
 import GitHub from "./icons/GitHub.astro";
-import Link from "./icons/Link.astro"
+import Link from "./icons/Link.astro";
 import LinkButton from "./LinkButton.astro";
 import NextJs from "./icons/NextJs.astro";
+import React from "./icons/React.astro";
 import Tailwind from "./icons/Tailwind.astro";
 
 const TAGS = {
@@ -13,40 +14,63 @@ const TAGS = {
     class: "bg-[#A437AA] text-white",
     icon: Csharp,
   },
-  BOOTSTRAP: {
-    name: "Bootstrap",
-    class: "bg-[#003159] text-white",
-    icon: Bootstrap,
-  },
   NEXT: {
     name: "Next.js",
     class: " text-white",
     icon: NextJs,
+  },
+  REACT: {
+    name: "React",
+    class: " text-white",
+    icon: React,
   },
   TAILWIND: {
     name: "Tailwind CSS",
     class: "bg-[#003159] text-white",
     icon: Tailwind,
   },
+  BOOTSTRAP: {
+    name: "Bootstrap",
+    class: "bg-[#003159] text-white",
+    icon: Bootstrap,
+  },
 };
 const PROJECTS = [
+  // {
+  //   title: "Indicadores - ENACOM",
+  //   description:
+  //     "Indicadores de mercado de los distintos servicios regulados por ENACOM.",
+  //   link: "https://indicadores.enacom.gob.ar/",
+  //   github: "",
+  //   image: "/porfolio/projects/indicadores.webp",
+  //   tags: [TAGS.CSHARP, TAGS.BOOTSTRAP],
+  // },
   {
-    title: "Indicadores - ENACOM",
+    title: "Easy Turnos",
     description:
-      "Indicadores de mercado de los distintos servicios regulados por ENACOM.",
-    link: "https://indicadores.enacom.gob.ar/",
-    github: "",
-    image: "/porfolio/projects/indicadores.webp",
-    tags: [TAGS.CSHARP, TAGS.BOOTSTRAP],
+      "Imagina una plataforma donde los profesionales pueden gestionar su agenda de manera sencilla y eficiente, y sus clientes pueden reservar citas de forma rápida y segura.",
+    link: "https://easy-turnos.vercel.app/",
+    github: "https://github.com/NoCountrySimulacion/EasyTurnos/tree/main",
+    image: "/porfolio/projects/easy-turnos.webp",
+    tags: [TAGS.CSHARP, TAGS.REACT, TAGS.TAILWIND],
   },
   {
     title: "AdoPet",
     description:
-      "AdopPet es una aplicación web diseñada para facilitar la adopción de animales y ayudar a conectar personas que han perdido o encontrado mascotas.",
+      "Aplicación web diseñada para facilitar la adopción de animales y ayudar a conectar personas que han perdido o encontrado mascotas.",
     link: "https://adopet-maidana07-projects.vercel.app/",
     github: "https://github.com/No-Country-simulation/s18-05-m-csharp-react",
     image: "/porfolio/projects/adopet.webp",
     tags: [TAGS.CSHARP, TAGS.NEXT, TAGS.TAILWIND],
+  },
+  {
+    title: "Justina",
+    description:
+      "Solución integral y segura para la gestión de información médica. Nuestro enfoque centrado en el usuario y nuestra arquitectura robusta aseguran que tanto médicos como pacientes puedan acceder a la información de manera eficiente y segura.",
+    link: "https://justinaio-app.netlify.app/",
+    github: "https://github.com/No-Country-simulation/h1-02-csharp-react",
+    image: "/porfolio/projects/justina.webp",
+    tags: [TAGS.CSHARP, TAGS.REACT, TAGS.TAILWIND],
   },
 ];
 ---
@@ -54,50 +78,56 @@ const PROJECTS = [
 <div class="flex flex-col gap-y-16">
   {
     PROJECTS.map(({ image, title, description, tags, link, github }) => (
-    <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
-  <div class="w-full md:w-1/2">
-    <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
-      <img alt="Recién llegado vs 5 años en Nueva Zelanda" class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" loading="lazy" src={image} />
-    </div>
-  </div>
+      <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
+        <div class="w-full md:w-1/2">
+          <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
+            <img
+              alt={title}
+              class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105"
+              loading="lazy"
+              src={image}
+            />
+          </div>
+        </div>
 
-  <div class="w-full md:w-1/2 md:max-w-lg">
-    <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">
-      {title}
-    </h3>
-    <div class="flex flex-wrap mt-2">
-      <ul class="flex flex-row mb-2 gap-x-2">
-          {tags.map((tag) => (
-            <li>
-              <span
-                class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}
-              >
-                <tag.icon class="size-4" />
-                {tag.name}
-              </span>
-            </li>
-          ))}
-        </ul>
+        <div class="w-full md:w-1/2 md:max-w-lg">
+          <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">
+            {title}
+          </h3>
+          <div class="flex flex-wrap mt-2">
+            <ul class="flex flex-row mb-2 gap-x-2">
+              {tags.map((tag) => (
+                <li>
+                  <span
+                    class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}
+                  >
+                    <tag.icon class="size-4" />
+                    {tag.name}
+                  </span>
+                </li>
+              ))}
+            </ul>
 
-      <div class="mt-2 text-gray-700 dark:text-gray-400">{description}</div>
-      <footer class="flex items-end justify-start mt-4 gap-x-4">
-          {github && (
-            <LinkButton href={github}>
-              <GitHub class="size-6" />
-              Code
-              
-            </LinkButton>
-          )}
-          {link && (
-            <LinkButton href={link}>
-              <Link class="size-4" />
-              Preview
-            </LinkButton>
-          )}
-        </footer>
-    </div>
-  </div>
-</article>
+            <div class="mt-2 text-gray-700 dark:text-gray-400">
+              {description}
+            </div>
+            <footer class="flex items-end justify-start mt-4 gap-x-4">
+              {github && (
+                <LinkButton href={github}>
+                  <GitHub class="size-6" />
+                  Code
+                </LinkButton>
+              )}
+              {link && (
+                <LinkButton href={link}>
+                  <Link class="size-4" />
+                  Preview
+                </LinkButton>
+              )}
+            </footer>
+          </div>
+        </div>
+      </article>
     ))
   }
 </div>
