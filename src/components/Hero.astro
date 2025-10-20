@@ -1,10 +1,31 @@
 ---
 const personalImageAlt = "Leonardo Olivera";
 import Badge from "@/components/Badge.astro";
-import GitHubIcon from "../components/icons/GitHub.astro";
+import GitHubIcon from "@/components/icons/GitHub.astro";
 import LinkedInIcon from "@/components/icons/LinkedIn.astro";
 import MailIcon from "@/components/icons/Mail.astro";
 import SocialPill from "@/components/SocialPill.astro";
+
+const SOCIAL_LINKS = [
+  {
+    name: "LinkedIn",
+    icon: LinkedInIcon,
+    class: "size-4 md:size-6",
+    href: "https:/www.linkedin.com/in/leoliveradev/",
+  },
+  {
+    name: "GitHub",
+    icon: GitHubIcon,
+    class: "size-4 md:size-6",
+    href: "https:/www.github.com/olezdev/",
+  },
+  {
+    name: "Gmail",
+    icon: MailIcon,
+    class: "size-4 md:size-6",
+    href: "mailto:leoliveradev@gmail.com",
+  },
+];
 ---
 
 <div class="max-w-xl">
@@ -34,17 +55,13 @@ import SocialPill from "@/components/SocialPill.astro";
     Desarrollador Web. De Buenos Aires Argentina. Especializado en Backend.
   </p>
   <nav class="flex flex-wrap gap-4 mt-8">
-    <SocialPill href="https:/www.linkedin.com/in/leoliveradev/">
-      <LinkedInIcon class="size-4 md:size-6" />
-      LinkedIn
-    </SocialPill>
-    <SocialPill href="https:/www.github.com/olezdev/">
-      <GitHubIcon class="size-4 md:size-6" />
-      GitHub
-    </SocialPill>
-    <SocialPill href="mailto:leoliveradev@gmail.com">
-      <MailIcon class="size-4 md:size-6" />
-      leoliveradev@gmail.com
-    </SocialPill>
+    {
+      SOCIAL_LINKS.map(({ href, icon: Icon, name, class: pillClass }) => (
+        <SocialPill href={href}>
+          <Icon class={pillClass} />
+          {name}
+        </SocialPill>
+      ))
+    }
   </nav>
 </div>
