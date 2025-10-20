@@ -1,23 +1,75 @@
-<header
-  class="flex justify-center items-center py-5 w-full xl:w-[1120px] mx-auto"
->
+---
+import ThemeToggle from "./ThemeToggle.astro";
+
+const navItems = [
+  { title: "Experiencia", label: "experiencia", url: "/porfolio/#experiencia" },
+  { title: "Proyectos", label: "proyectos", url: "/porfolio/#proyectos" },
+  { title: "Sobre mí", label: "sobre-mi", url: "/porfolio/#sobre-mi" },
+  { title: "Contacto", label: "contacto", url: "mailto:leoliveradev@gmail.com" },
+];
+---
+
+<header class="fixed top-0 z-20 w-full flex justify-center mt-2">
   <nav
-    class={`px-3 py-1
-    flex flex-row items-center
-   bg-neutral-200 dark:bg-black/50`}
+    id="header-nav"
+    class="flex px-3 text-sm font-medium rounded-full text-gray-600 dark:text-gray-200 justify-center items-center"
   >
-    <a
-      class="hover:bg-white/10 rounded-full px-3 transition"
-      href="/porfolio/#experiencia">Experiencia</a
-    >
-    <a class="hover:bg-white/10 rounded-full px-3 transition" href="/porfolio/#proyectos"
-      >Proyectos</a
-    >
-    <a class="hover:bg-white/10 rounded-full px-3 transition" href="/porfolio/#sobre-mi"
-      >Sobre mí</a
-    >
-    <a class="hover:bg-white/10 rounded-full px-3 transition" href="/porfolio/#contacto"
-      >Contacto</a
-    >
+    {navItems.map((link) => (
+      <a
+        class="relative block px-2 py-2 transition hover:text-blue-500 dark:hover:text-blue-500"
+        aria-label={link.label}
+        href={link.url}
+      >
+        {link.title}
+      </a>
+    ))}
+
+    <!-- <ThemeToggle /> -->
   </nav>
 </header>
+
+<script is:inline>
+  document.addEventListener("astro:page-load", () => {
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll("header nav a");
+
+    const callback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          navLinks.forEach((link) => {
+            link.classList.toggle(
+              "text-blue-500",
+              link.getAttribute("aria-label") === entry.target.id
+            );
+          });
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(callback, {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.3,
+    });
+
+    sections.forEach((section) => observer.observe(section));
+
+    document.onvisibilitychange = () => {
+      if (document.visibilityState === "hidden") {
+        observer.disconnect();
+      } else {
+        sections.forEach((section) => observer.observe(section));
+      }
+    };
+  });
+
+  // Scroll blur + sombra dinámica
+  const nav = document.getElementById("header-nav");
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 20) {
+      nav.classList.add("shadow-lg");
+    } else {
+      nav.classList.remove("shadow-lg");
+    }
+  });
+</script>
