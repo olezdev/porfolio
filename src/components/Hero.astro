@@ -1,29 +1,29 @@
 ---
 const personalImageAlt = "Leonardo Olivera";
-import Badge from "./Badge.astro";
-import GitHubIcon from "./icons/GitHub.astro";
-import LinkedInIcon from "./icons/LinkedIn.astro";
-import MailIcon from "./icons/Mail.astro";
-import SocialPill from "./SocialPill.astro";
+import Badge from "@/components/Badge.astro";
+import GitHubIcon from "@/components/icons/GitHub.astro";
+import LinkedInIcon from "@/components/icons/LinkedIn.astro";
+import MailIcon from "@/components/icons/Mail.astro";
+import SocialPill from "@/components/SocialPill.astro";
 
 const SOCIAL_LINKS = [
   {
     name: "LinkedIn",
     icon: LinkedInIcon,
     class: "size-4 md:size-6",
-    href: "https:/www.linkedin.com/in/leoliveradev/",
+    link: "https:/www.linkedin.com/in/leoliveradev/",
   },
   {
     name: "GitHub",
     icon: GitHubIcon,
     class: "size-4 md:size-6",
-    href: "https:/www.github.com/olezdev/",
+    link: "https:/www.github.com/olezdev/",
   },
   {
     name: "Gmail",
     icon: MailIcon,
     class: "size-4 md:size-6",
-    href: "mailto:leoliveradev@gmail.com",
+    link: "mailto:leoliveradev@gmail.com",
   },
 ];
 ---
@@ -56,8 +56,8 @@ const SOCIAL_LINKS = [
   </p>
   <nav class="flex flex-wrap gap-4 mt-8">
     {
-      SOCIAL_LINKS.map(({ href, icon: Icon, name, class: pillClass }) => (
-        <SocialPill href={href}>
+      SOCIAL_LINKS.map(({ link, icon: Icon, name, class: pillClass }) => (
+        <SocialPill href={link}>
           <Icon class={pillClass} />
           {name}
         </SocialPill>
