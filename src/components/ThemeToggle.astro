@@ -7,7 +7,10 @@ const THEMES = ["Light", "Dark", "System"];
 ---
 
 <div class="relative ml-2">
-  <button id="theme-toggle-btn" class="appearance-none flex items-center hover:scale-110 transition">
+  <button
+    id="theme-toggle-btn"
+    class="appearance-none flex items-center hover:scale-110 transition"
+  >
     <span class="sr-only">Cambiar tema</span>
     <SunIcon id="light" class="theme-toggle-icon size-5" />
     <MoonIcon id="dark" class="theme-toggle-icon size-5 absolute" />
@@ -20,7 +23,9 @@ const THEMES = ["Light", "Dark", "System"];
   >
     <ul>
       {THEMES.map((theme) => (
-        <li class="themes-menu-option px-2 py-1.5 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 rounded-sm">
+        <li
+          class="themes-menu-option px-2 py-1.5 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 rounded-sm"
+        >
           {theme}
         </li>
       ))}
@@ -54,7 +59,6 @@ const THEMES = ["Light", "Dark", "System"];
   const matchMedia = window.matchMedia("(prefers-color-scheme: dark)");
   const menu = document.getElementById("themes-menu");
   const btn = document.getElementById("theme-toggle-btn");
-  let removeListener = null;
 
   const getTheme = () => localStorage.getItem("theme") ?? "system";
 
@@ -75,15 +79,19 @@ const THEMES = ["Light", "Dark", "System"];
     setThemeClass(theme);
   };
 
+  // Ejecuta al cargar
   applyTheme();
 
+  // Abrir menú
   btn.addEventListener("click", (e) => {
     e.stopPropagation();
     menu.classList.toggle("open");
   });
 
+  // Cerrar menú al hacer clic afuera
   document.addEventListener("click", () => menu.classList.remove("open"));
 
+  // Seleccionar tema
   document.querySelectorAll(".themes-menu-option").forEach((option) => {
     option.addEventListener("click", (e) => {
       const theme = e.target.innerText.toLowerCase().trim();
@@ -93,5 +101,6 @@ const THEMES = ["Light", "Dark", "System"];
     });
   });
 
-  document.addEventListener("astro:after-swap", applyTheme);
+  // Reaplicar al cambiar de página (navegación sin recarga)
+  document.addEventListener("astro:page-load", applyTheme);
 </script>

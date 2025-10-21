@@ -9,9 +9,10 @@ const navItems = [
 ];
 ---
 
-<header class="fixed top-0 z-20 w-full flex justify-center mt-2">
+<header
+  class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-2"
+>
   <nav
-    id="header-nav"
     class="flex px-3 text-sm font-medium rounded-full text-gray-600 dark:text-gray-200 justify-center items-center"
   >
     {navItems.map((link) => (
@@ -28,48 +29,65 @@ const navItems = [
   </nav>
 </header>
 
-<script is:inline>
+<script>
   document.addEventListener("astro:page-load", () => {
-    const sections = document.querySelectorAll("section");
-    const navLinks = document.querySelectorAll("header nav a");
+    const sections = document.querySelectorAll("section")
+    const navItems = document.querySelectorAll("header nav a")
 
-    const callback = (entries) => {
+    const callback = (entries: any[]) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          navLinks.forEach((link) => {
-            link.classList.toggle(
-              "text-blue-500",
-              link.getAttribute("aria-label") === entry.target.id
-            );
-          });
+          navItems.forEach((item) => {
+            if (item.getAttribute("aria-label") == entry.target.id) {
+              item.classList.add("text-blue-500")
+            } else {
+              item.classList.remove("text-blue-500")
+            }
+          })
         }
-      });
-    };
+      })
+    }
 
     const observer = new IntersectionObserver(callback, {
       root: null,
       rootMargin: "0px",
       threshold: 0.3,
-    });
+    })
 
-    sections.forEach((section) => observer.observe(section));
+    sections.forEach((section) => {
+      observer.observe(section)
+    })
 
+    // Cleanup function
     document.onvisibilitychange = () => {
       if (document.visibilityState === "hidden") {
-        observer.disconnect();
+        observer.disconnect()
       } else {
-        sections.forEach((section) => observer.observe(section));
+        sections.forEach((section) => {
+          observer.observe(section)
+        })
       }
-    };
-  });
-
-  // Scroll blur + sombra dinámica
-  const nav = document.getElementById("header-nav");
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 20) {
-      nav.classList.add("shadow-lg");
-    } else {
-      nav.classList.remove("shadow-lg");
     }
-  });
+  })
 </script>
+
+<style>
+  nav {
+    animation: nav-shadown 1s linear both;
+    animation-timeline: scroll();
+    animation-range: 0 100px;
+  }
+
+  nav {
+     dark:bg-gray-800/90 bg-white/50;
+  }
+
+  @keyframes nav-shadown {
+    0% {
+       dark:bg-gray-800/0 bg-white/0;
+    }
+    to {
+      /* shadow-lg ring-1 backdrop-blur ring-white/10; */
+    }
+  }
+</style>
