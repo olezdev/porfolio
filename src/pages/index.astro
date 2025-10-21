@@ -16,35 +16,36 @@ import TitleSection from "@/components/TitleSection.astro";
 	title="Porfolio de Leonardo - Desarrollador y Programador"
 	description="Contrata a Leonardo para crear tu aplicación web."
 >
-	<main class="px-4">
-		<SectionContainer class="py-16 pb-36">
-			<Hero />
-		</SectionContainer>
-	</main>
+  <main class="px-4">
+    <SectionContainer class="py-16 md:py-36">
+      <Hero>
+      </slot>
+    </Hero>
+    </SectionContainer>
+    <div class="space-y-24">
+    <SectionContainer id="experiencia">
+      <TitleSection>
+        <BriefcaseIcon class="size-8" />
+        Experiencia laboral
+      </TitleSection>
+      <Experience />
+    </SectionContainer>
 
-	<div class="space-y-24">
-		<SectionContainer id="experiencia">
-			<TitleSection>
-				<BriefcaseIcon class="size-6" />
-				Experiencia Laboral
-			</TitleSection>
-			<Experience />
-		</SectionContainer>
+    <SectionContainer id="proyectos">
+      <TitleSection>
+        <CodeIcon class="size-7" />
+        Proyectos
+      </TitleSection>
+      <Projects />
+    </SectionContainer>
 
-		<SectionContainer id="proyectos">
-			<TitleSection>
-				<CodeIcon class="size-6" />
-				Proyectos
-			</TitleSection>
-				<Projects />
-		</SectionContainer>
-
-		<SectionContainer id="sobre-mi">
-			<TitleSection>
-				<ProfileIcon class="size-6" />
-				Sobre mí
-			</TitleSection>
-			<AboutMe />
-		</SectionContainer>
-	</div>
+    <SectionContainer id="sobre-mi">
+      <TitleSection>
+        <ProfileIcon class="size-8" />
+        Sobre mí
+      </TitleSection>
+      <AboutMe />
+    </SectionContainer>
+  </div>
+  </main>
 </Layout>
