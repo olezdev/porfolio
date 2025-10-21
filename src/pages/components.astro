@@ -1,10 +1,14 @@
 ---
 import Badge from "@/components/Badge.astro"
+import LinkButton from "@/components/LinkButton.astro"
 import SectionContainer from "@/components/SectionContainer.astro"
 import SocialPill from "@/components/SocialPill.astro"
 import LinkedInIcon from "@/components/icons/LinkedIn.astro"
+import GitHubIcon from "@/components/icons/GitHub.astro"
 
 import Layout from "@/layouts/Layout.astro"
+import Link from "@/components/icons/Link.astro"
+import TitleSection from "@/components/TitleSection.astro"
 ---
 
 <Layout
@@ -22,10 +26,35 @@ import Layout from "@/layouts/Layout.astro"
       <h1 class="mb-4 text-xl font-semibold">&lt SocialPill /&gt;</h1>
 
       <div class="flex">
-        <SocialPill href="https://linkedin.com/in/midudev">
+        <SocialPill href="https://linkedin.com/in/leoliveradev">
           <LinkedInIcon class="size-4 md:size-6" />
           LinkedIn
         </SocialPill>
+      </div>
+    </article>
+
+    <article class="mb-10">
+      <h1 class="mb-4 text-xl font-semibold">&lt LinkButton /&gt;</h1>
+
+      <div class="flex gap-4">
+        <LinkButton href="https:/www.github.com/olezdev">
+          <GitHubIcon class="size-4 md:size-6" />
+          GitHub
+        </LinkButton>
+        <LinkButton href="https:/olezdev.github.io/portfolio">
+          <Link class="size-4 md:size-6" />
+          Preview
+        </LinkButton>
+      </div>
+    </article>
+
+    <article class="mb-10">
+      <h1 class="mb-4 text-xl font-semibold">&lt TitleSection /&gt;</h1>
+
+      <div class="flex">
+        <TitleSection>
+          Experiencia
+        </TitleSection>
       </div>
     </article>
   </SectionContainer>
